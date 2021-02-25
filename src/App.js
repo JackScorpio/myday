@@ -6,11 +6,9 @@ import Task from './Cards/Task'
 import RestMsg from './RestMsg'
 
 function App() {
-  const [showContent, setShowContent] = useState(false)
+
   const [taskInit, setTaskInit] = useState(false)
-  useEffect(() => {
-    setShowContent (true)
-  }, [])
+
   return (
     <div className="App">
      <div class="ui menu">
@@ -38,7 +36,7 @@ function App() {
       <Task topic="Products analysis" description="Check all pending analysis tasks" status=" "/>
       <Task topic="After-sales support" description="Clean pending suuport issues" status=" "/>
       </div>
-      {showContent && 
+      {taskInit && 
       <div className="flex-container">
       <RestMsg restType="Break" restInterval="3600" restLength="300" />
     </div>

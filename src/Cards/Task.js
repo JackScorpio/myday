@@ -16,11 +16,11 @@ const Task = (props) => {
        
       <div className="content">
         <div className="header"><h2>{props.topic}</h2></div>
-      <div className="meta">
-        <span className="category">{props.description}</span>
       </div>
-
-    </div>
+      <div>
+      <button class="ui positive basic button">Start</button>
+      </div>
+      
     <div className="extra content">
       <div className="ui buttons">
         <button className="positive ui button" onClick={() => setTaskState('done')}>Done</button>
