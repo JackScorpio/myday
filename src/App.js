@@ -4,6 +4,7 @@ import { Component } from 'react';
 import React, {useState, useEffect} from 'react'
 import Task from './Cards/Task'
 import RestMsg from './RestMsg'
+import MyClock from './Clock';
 
 function App() {
 
@@ -19,7 +20,7 @@ function App() {
         <div class="ui button">Log-in</div>
       </div>
     </div>
-      <h1>My Day</h1>
+      <MyClock />
     {!(taskInit) && 
     <button className="massive ui green button" onClick={()=> setTaskInit(true)}>
     Start

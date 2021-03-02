@@ -1,0 +1,10 @@
+.clock {
+
+  /* transform: translateX(-50%) translateY(-50%); */
+  color: #8a8989;
+  font-size: 60px;
+  font-family: Orbitron;
+  letter-spacing: 7px;
+  padding: 20px;
+  margin: 20px;
+}
