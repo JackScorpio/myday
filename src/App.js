@@ -12,22 +12,22 @@ function App() {
 
   return (
     <div className="App">
-     <div class="ui menu">
-      <div class="item">
-        <div class="ui primary button">Sign up</div>
+     <div className="ui menu">
+      <div className="item">
+        <div className="ui primary button">Sign up</div>
       </div>
-      <div class="item">
-        <div class="ui button">Log-in</div>
+      <div className="item">
+        <div className="ui button">Log-in</div>
       </div>
     </div>
       <MyClock />
     {!(taskInit) && 
-    <button className="massive ui green button" onClick={()=> setTaskInit(true)}>
+    <button className="buttonBeforeStart buttonStartEnd" onClick={()=> setTaskInit(true)}>
     Start
     </button>
     }
     {taskInit && 
-    <button className="massive ui red button">
+    <button className="buttonAfterStart buttonStartEnd" onClick={()=> setTaskInit(false)}>
     End
     </button>
     }

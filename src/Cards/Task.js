@@ -17,9 +17,9 @@ const Task = (props) => {
       <div className="content">
         <div className="header"><h2>{props.topic}</h2></div>
       </div>
-      <div>
+      {/* <div>
       <button class="ui positive basic button">Start</button>
-      </div>
+      </div> */}
       
     <div className="extra content">
       <div className="ui buttons">

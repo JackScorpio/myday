@@ -1,9 +1,9 @@
-const EndButton = () => {
-return (
-  <button className="massive ui Red button">
-      End
-      </button>
-)
-}
+// const EndButton = () => {
+// return (
+//   <button className="massive ui Red button">
+//       End
+//       </button>
+// )
+// }
 
-export default EndButton;
+// export default EndButton;
