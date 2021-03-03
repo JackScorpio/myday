@@ -24,8 +24,10 @@ h1 {
   margin: 30px;
 }
 
-.taskContainer {
 
+li {
+  padding: 10px;
+  background-color: rgb(196, 220, 255);
+  font-size: 24px;
+  margin: 10px;
 }
-
-

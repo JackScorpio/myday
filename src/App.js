@@ -10,30 +10,31 @@ import TodoList from './TodoList';
 function App() {
 
   const [taskInit, setTaskInit] = useState(false)
-
+  
   return (
     <div className="App">
       
      <div className="ui menu">
      <MyClock />
-     <TodoList/>
-     </div>
-      
-      {!(taskInit) && 
-      <button className="massive ui black button" onClick={()=> setTaskInit(true)}>
+     <div className="right item">
+     {!(taskInit) && 
+      <button className=" large ui green button" onClick={()=> setTaskInit(true)}>
       Start
       </button>
       }
       {taskInit && 
-      <button className="massive ui grey button" onClick={()=> setTaskInit(false)}>
+      <button className=" large ui red button" onClick={()=> setTaskInit(false)}>
       End
       </button>
       }
-    
-      <div>
-        <Task topic="Compliance" description="Follow up all compliance projects" status=" "/>
+     
+     </div>
+     </div>
+     <div>
+      <TodoList/>
+        {/* <Task topic="Compliance"/>
         <Task topic="Products analysis" description="Check all pending analysis tasks" status=" "/>
-        <Task topic="After-sales support" description="Clean pending suuport issues" status=" "/>
+        <Task topic="After-sales support" description="Clean pending suuport issues" status=" "/> */}
       </div>
         {taskInit && 
       <div className="flex-container">

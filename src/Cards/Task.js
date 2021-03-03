@@ -7,8 +7,7 @@ const Task = (props) => {
 
   
     const [taskState, setTaskState] = useState(false);
-
-  
+ 
 
   return (
     <div className="flex-container">
