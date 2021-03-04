@@ -62,7 +62,6 @@ class TodoList extends Component {
           </button>
         </div>
         </form>
-      <Task />
       <TodoItems entries={this.state.items}/>
       </div>
 

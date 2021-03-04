@@ -14,11 +14,9 @@ const Task = (props) => {
      <div className="ui raised card">
        
       <div className="content">
-        <div className="header"><h2>{props.topic}</h2></div>
+        <div className="header"><h2>{props.text}</h2></div>
       </div>
-      {/* <div>
-      <button class="ui positive basic button">Start</button>
-      </div> */}
+
       
     <div className="extra content">
       <div className="ui buttons">

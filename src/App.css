@@ -26,8 +26,5 @@ h1 {
 
 
 li {
-  padding: 10px;
-  background-color: rgb(196, 220, 255);
-  font-size: 24px;
-  margin: 10px;
+  list-style-type: none;
 }

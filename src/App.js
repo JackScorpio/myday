@@ -32,9 +32,7 @@ function App() {
      </div>
      <div>
       <TodoList/>
-        {/* <Task topic="Compliance"/>
-        <Task topic="Products analysis" description="Check all pending analysis tasks" status=" "/>
-        <Task topic="After-sales support" description="Clean pending suuport issues" status=" "/> */}
+      
       </div>
         {taskInit && 
       <div className="flex-container">
