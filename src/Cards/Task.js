@@ -12,12 +12,11 @@ const Task = (props) => {
   return (
     <div className="flex-container">
      <div className="ui raised card">
-       
       <div className="content">
+        <i className="right floated close link icon"></i>
         <div className="header"><h2>{props.text}</h2></div>
       </div>
-
-      
+     
     <div className="extra content">
       <div className="ui buttons">
         <button className="positive ui button" onClick={() => setTaskState('done')}>Done</button>
