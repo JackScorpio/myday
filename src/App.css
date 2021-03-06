@@ -35,3 +35,7 @@ li {
   grid-gap: 5px;
   grid-auto-rows: minmax(200px, auto);
 }
+
+.card {
+  opacity: 0.8;
+}
