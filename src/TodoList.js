@@ -55,7 +55,7 @@ class TodoList extends Component {
       <div className="tasks">
         <form onSubmit={this.addItem}>
         <div className="ui action input">
-          <input type="text" ref={(a) => this._inputElement = a}
+          <input maxlength="18" type="text" ref={(a) => this._inputElement = a}
             placeholder="Add Todo card.."></input>
           <button className="ui grey button">
             Add

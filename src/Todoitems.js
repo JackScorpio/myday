@@ -20,12 +20,14 @@ class TodoItems extends Component {
    
     return (
       <>
-      
-        {listItems.map(listItems => (
+      <div className="todoItems">
+       {listItems.map(listItems => (
           <li>
             {<Task text={listItems} />}
           </li>
         ))}
+      </div>
+    
       
       </>
       
