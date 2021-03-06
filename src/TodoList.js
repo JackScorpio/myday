@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './button.css';
 import './App.css';
-import TodoItems from './Todoitems'
 import Task from './Cards/Task'
 import TaskDone from './Cards/TaskDone';
 
@@ -38,6 +37,10 @@ class TodoList extends Component {
     e.preventDefault();
 
   }
+  
+  createTasks(item) {
+    return <li key={item.key}>{item.text}</li>
+  }
 
   componentDidMount() {
     localStorage.getItem('items') && this.setState({
@@ -48,7 +51,9 @@ class TodoList extends Component {
 
 
   render() {
-    
+    let todoEntries = this.state.items;
+    let listItems = todoEntries.map(this.createTasks);
+    console.log(listItems)
     return (
  
       <div className="tasks">
@@ -61,7 +66,15 @@ class TodoList extends Component {
           </button>
         </div>
         </form>
-      <TodoItems entries={this.state.items}/>
+        <>
+      <div className="todoItems">
+       {listItems.map(listItems => (
+          <li>
+            {<Task text={listItems} key={listItems} />}
+          </li>
+        ))}
+      </div>
+      </>
       </div>
 
     )
