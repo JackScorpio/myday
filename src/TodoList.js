@@ -7,26 +7,14 @@ import TaskDone from './Cards/TaskDone';
 
 class TodoList extends Component {
 
+  userData;
+
   constructor(props) {
     super(props);
-
     this.state = {
-      items: [
-        {
-         text: "Compliance",
-         key: "1"
-        },
-        {
-          text: "Products analysis",
-          key: "2"
-        },
-        {
-          text: "After-sales support",
-          key: "3"
-        }
-      ],
+      items: []
     }
-
+    // console.log(this.state)
     this.addItem = this.addItem.bind(this)
   }
   addItem(e) {
@@ -37,16 +25,27 @@ class TodoList extends Component {
       };
 
       this.setState((prevState) => {
+        const items = prevState.items.concat(newItem);
+        localStorage.setItem('items',JSON.stringify(items))
         return {
           items: prevState.items.concat(newItem)
         };
       });
+      
     }
     this._inputElement.value="";
     
     e.preventDefault();
 
   }
+
+  componentDidMount() {
+    localStorage.getItem('items') && this.setState({
+      items: JSON.parse(localStorage.getItem('items'))
+    })
+  
+  }
+
 
   render() {
     
@@ -55,7 +54,7 @@ class TodoList extends Component {
       <div className="tasks">
         <form onSubmit={this.addItem}>
         <div className="ui action input">
-          <input maxlength="18" type="text" ref={(a) => this._inputElement = a}
+          <input maxLength="18" type="text" ref={(a) => this._inputElement = a}
             placeholder="Add Todo card.."></input>
           <button className="ui grey button">
             Add
