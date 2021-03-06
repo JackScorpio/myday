@@ -30,9 +30,9 @@ function App() {
       
       </div>
      </div>
-     <div>
+    
       <TodoList/>
-     </div>
+     
         {taskInit && 
       <div className="flex-container">
         <RestMsg restType="Break" restInterval="3600" restLength="300" />

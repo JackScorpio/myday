@@ -31,11 +31,18 @@ li {
 
 .todoItems {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 300px 300px 300px;
   grid-gap: 5px;
   grid-auto-rows: minmax(200px, auto);
+  
+  justify-content: center;
 }
 
 .card {
   opacity: 0.8;
+}
+
+.tasks {
+  justify-content: center;
+  justify-items: center;
 }
