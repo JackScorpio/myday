@@ -1,7 +1,7 @@
 import './App.css';
 import './button.css';
 import React, {useState, useEffect} from 'react'
-import RestMsg from './RestMsg'
+import Timer from './Timer'
 import MyClock from './Clock';
 import TodoList from './TodoList';
 
@@ -30,7 +30,7 @@ function App() {
        <TodoList/>
          {taskInit && 
           <div className="flex-container">
-          <RestMsg restType="Break" restInterval="3600" restLength="300" />
+          <Timer restType="Break" restInterval="3600" restLength="300" />
           </div>
       }
       

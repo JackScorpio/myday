@@ -64,8 +64,12 @@ import './App.css';
 
 
     function deleteTask(id) {
-      const updatedTasks = [...tasks].filter((task) => task.id !== id)
-      setTasks(updatedTasks)
+      const answer = window.confirm("Delete task?")
+      if (answer === true) {
+        const updatedTasks = [...tasks].filter((task) => task.id !== id)
+        setTasks(updatedTasks)
+      }
+     
     }
 
 
