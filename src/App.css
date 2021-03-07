@@ -29,7 +29,7 @@ li {
   list-style-type: none;
 }
 
-.todoItems {
+.taskItems {
   display: grid;
   grid-template-columns: repeat(auto-fill, 400px);
   grid-gap: 5px;
@@ -42,7 +42,8 @@ li {
   opacity: 0.8;
 }
 
-.tasks {
-  justify-content: center;
-  justify-items: center;
+.deleteIcon {
+  position:absolute;
+  right: 0;
+
 }

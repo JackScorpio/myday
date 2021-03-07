@@ -2,7 +2,6 @@ import './App.css';
 import './button.css';
 import { Component } from 'react';
 import React, {useState, useEffect} from 'react'
-import Task from './Cards/Task'
 import RestMsg from './RestMsg'
 import MyClock from './Clock';
 import TodoList from './TodoList';
