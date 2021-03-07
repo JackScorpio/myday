@@ -14,6 +14,8 @@ const Timer = (props) => {
             if (seconds === 0) {
                 if (minutes === 0) {
                     clearInterval(myInterval)
+                    alert("Take a break and get some water!")
+                    setMinutes("45")
                 } else {
                     setMinutes(minutes - 1);
                     setSeconds(59);
