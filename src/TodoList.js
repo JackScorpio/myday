@@ -1,37 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './button.css';
 import './App.css';
 import TaskDone from './TaskDone';
 import TaskPostpone from './TaskPostpone'
 
 
-// class TodoList extends Component {
-
-//   userData;
-
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       items: []
-//     }
-//     // console.log(this.state)
-//     this.addItem = this.addItem.bind(this)
-//   }
-
-//   componentDidMount() {
-//     localStorage.getItem('items') && this.setState({
-//       items: JSON.parse(localStorage.getItem('items'))
-//     })
-  
-//   }
-
   function TodoList () {
 
       const [tasks, setTasks] = React.useState([])
       const [task, setTask] = React.useState("")
-      const [taskState, setTaskState] = React.useState(false);
+      // const [taskState, setTaskState] = React.useState(false);
       
-      const addTask = (e) => {
+    const addTask = (e) => {
 
       const newTask = {
         id: new Date().getTime(),
@@ -41,28 +21,42 @@ import TaskPostpone from './TaskPostpone'
     
       setTasks([...tasks].concat(newTask))
       setTask("")
-    
-      // this.setState((prevState) => {
-      //   const items = prevState.items.concat(newItem);
-      //   localStorage.setItem('items',JSON.stringify(items))
-      //   return {
-      //     items: prevState.items.concat(newItem)
-      //   };
-      // });
+      console.log(tasks)
       e.preventDefault();
     }
 
-  
+
+      function setTaskDone(id) {
+        const updatedTasks = [...tasks].map((task) => {
+          if (task.id === id) {
+            if (task.completed === false) {
+              task.completed = true
+            }
+          }
+          return task
+        })
+        setTasks(updatedTasks)
+      }
+
+      function setTaskPending(id) {
+        const updatedTasks = [...tasks].map((task) => {
+          if (task.id === id) {
+            if (task.completed === true) {
+              task.completed = false
+            }
+          }
+          return task
+        })
+        setTasks(updatedTasks)
+      }
+
+
     function deleteTask(id) {
       const updatedTasks = [...tasks].filter((task) => task.id !== id)
       setTasks(updatedTasks)
     }
 
 
-
-    // let todoEntries = this.state.items;
-    // let listItems = todoEntries.map(this.createTasks);
-    // console.log(listItems)
     return (
  
       <div className="tasks">
@@ -81,7 +75,7 @@ import TaskPostpone from './TaskPostpone'
         </form>
         
       <div className="taskItems">
-       {tasks.map(task => (
+       {tasks!==null && tasks.map(task => (
           <div key={task.id} className="task">
             
           <div className="flex-container">
@@ -93,27 +87,28 @@ import TaskPostpone from './TaskPostpone'
             
             <div className="extra content">
               <div className="ui buttons">
-                <button className="positive ui button" onClick={() => setTaskState('done')}>Done</button>
+                <button className="positive ui button" onClick={() => setTaskDone(task.id)}>Done</button>
                 <div className="or"></div>
-                <button className="negative ui button" onClick={() => setTaskState('postpone')}>Postpone</button>
+                <button className="negative ui button" onClick={() => setTaskPending(task.id)}>Pending</button>
               </div>
             </div>
-            {taskState==='done' && <TaskDone />}
-            {taskState==='postpone' && <TaskPostpone />}
+            {task.completed===false && <div className="ui negative message">
+              <div className="header">
+                This task is pending.
+              </div>
+            </div>}
+            {task.completed===true && <div className="ui positive message">
+              <div className="header">
+                This task is done.
+              </div>
+            </div>}
 
             </div>
             </div>
-            
-        
-            
           </div>
-           
-          
         ))}
       </div>
-      
       </div>
-
     )
   }
 
