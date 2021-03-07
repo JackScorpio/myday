@@ -1,15 +1,28 @@
 import React from 'react';
 import './button.css';
 import './App.css';
-import TaskDone from './TaskDone';
-import TaskPostpone from './TaskPostpone'
-
 
   function TodoList () {
 
       const [tasks, setTasks] = React.useState([])
       const [task, setTask] = React.useState("")
-      // const [taskState, setTaskState] = React.useState(false);
+
+ 
+      React.useEffect(() => {
+        const jsonget = localStorage.getItem("tasks")
+        const loadedTasks = JSON.parse(jsonget)
+
+          if(loadedTasks) {
+            setTasks(loadedTasks)
+          }
+      }, [])
+
+      React.useEffect(() => {
+        const jsonset = JSON.stringify(tasks)
+        localStorage.setItem("tasks", jsonset)
+      }, [tasks])
+
+
       
     const addTask = (e) => {
 
@@ -24,7 +37,6 @@ import TaskPostpone from './TaskPostpone'
       console.log(tasks)
       e.preventDefault();
     }
-
 
       function setTaskDone(id) {
         const updatedTasks = [...tasks].map((task) => {
