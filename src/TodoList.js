@@ -31,11 +31,16 @@ import './App.css';
         text: task,
         completed: false
       }
-    
+      e.preventDefault();
+      if (newTask.text.trim()===""){
+        alert('Task title is empty!') 
+        return null
+      }
+      
       setTasks([...tasks].concat(newTask))
       setTask("")
       console.log(tasks)
-      e.preventDefault();
+      
     }
 
       function setTaskDone(id) {

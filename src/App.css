@@ -31,7 +31,7 @@ li {
 
 .taskItems {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 400px);
+  grid-template-columns: repeat(auto-fill, 300px);
   grid-gap: 5px;
   /* grid-auto-rows: minmax(200px, auto); */
   justify-content: center;
