@@ -71,11 +71,11 @@ import { Dropdown } from 'semantic-ui-react'
 
 
     function deleteTask(id) {
-      const answer = window.confirm("Delete task?")
-      if (answer === true) {
+      // const answer = window.confirm("Delete task?")
+      // if (answer === true) {
         const updatedTasks = [...tasks].filter((task) => task.id !== id)
         setTasks(updatedTasks)
-      }
+      // }
      
     }
 
