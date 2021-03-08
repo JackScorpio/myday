@@ -2,6 +2,8 @@ import React from 'react';
 import './button.css';
 import './App.css';
 
+import { Dropdown } from 'semantic-ui-react'
+
   function TodoList () {
 
       const [tasks, setTasks] = React.useState([])
@@ -77,6 +79,24 @@ import './App.css';
      
     }
 
+    const filterOptions = [
+      {
+        key: 'All',
+        text: 'All',
+        value: 'All',
+      },
+      {
+        key: 'Done',
+        text: 'Done',
+        value: 'Done',
+      },
+      {
+        key: 'Pending',
+        text: 'Pending',
+        value: 'Pending',
+      },
+      
+    ]
 
     return (
  
@@ -92,6 +112,11 @@ import './App.css';
           <button className="ui grey button">
             Add
           </button>
+          <Dropdown
+            placeholder='Filter'
+            selection
+            options={filterOptions}
+          />
         </div>
         </form>
         
