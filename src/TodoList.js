@@ -1,7 +1,7 @@
 import React from 'react';
 import './button.css';
 import './App.css';
-
+import { Checkbox } from 'semantic-ui-react'
 import { Dropdown } from 'semantic-ui-react'
 
   function TodoList () {
@@ -24,8 +24,6 @@ import { Dropdown } from 'semantic-ui-react'
         localStorage.setItem("tasks", jsonset)
       }, [tasks])
 
-
-      
     const addTask = (e) => {
 
       const newTask = {
@@ -103,7 +101,7 @@ import { Dropdown } from 'semantic-ui-react'
       <div className="tasks">
         <form onSubmit={addTask}>
         <div className="ui action input">
-          <input maxLength="18" 
+          <input maxLength="30" 
                 type="text" 
                 onChange={(e) => setTask(e.target.value)}
                 value={task}
@@ -128,15 +126,14 @@ import { Dropdown } from 'semantic-ui-react'
             <div className="ui raised card">
                <div className="content">
                <i className="right floated trash link icon" onClick = {() => deleteTask(task.id)}></i>
-                <div className="header"><h2>{task.text}</h2></div>
+                <div className="header">
+                 
+                  <h2><Checkbox  />{task.text}</h2>
+                </div>
               </div>
             
             <div className="extra content">
-              <div className="ui buttons">
-                <button className="positive ui button" onClick={() => setTaskDone(task.id)}>Done</button>
-                <div className="or"></div>
-                <button className="negative ui button" onClick={() => setTaskPending(task.id)}>Pending</button>
-              </div>
+            <Checkbox label='subtasks' />
             </div>
             {task.completed===false && <div className="ui negative message">
               <div className="header">
