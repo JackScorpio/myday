@@ -28,11 +28,11 @@ const Timer = (props) => {
     });
 
     return (
-        <div className="ui huge orange info floating message">
-            <h2>Take a rest in:</h2>
+        <div className="ui orange info floating message">
+           
         { minutes === 0 && seconds === 0
             ? null
-            : <h1> {minutes}:{seconds < 10 ?  `0${seconds}` : seconds}</h1> 
+            : <h1>Take a rest in: {minutes}:{seconds < 10 ?  `0${seconds}` : seconds}</h1> 
         }
         </div>
     )

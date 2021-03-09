@@ -10,18 +10,18 @@ body {
 }
 
 h1 {
-  font-size: 68px;
+  font-size: 14px;
   font-family: Georgia;
   /* margin-top: 50px;
   margin-bottom: 50px; */
-  padding-top: 30px;
-  padding-bottom: 30px;
+  /* padding-top: 30px;
+  padding-bottom: 30px; */
 }
 
 .flex-container {
   display: flex;
   justify-content: center;
-  margin: 30px;
+  margin: 20px;
 }
 
 
@@ -48,11 +48,11 @@ li {
 
 }
 
-.flex-container {
-  margin: 20px;
-}
 
 .ui.checkbox  {
   font-size: 20px;
 }
 
+.timer {
+  margin-right: 10px;
+}

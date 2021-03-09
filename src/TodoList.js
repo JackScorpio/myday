@@ -3,7 +3,7 @@ import './button.css';
 import './App.css';
 import { Dropdown } from 'semantic-ui-react';
 import '@djthoms/pretty-checkbox';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
 
   function TodoList () {
 
@@ -110,7 +110,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
     ]
 
     return (
- 
+//  Add main task
       <div className="tasks">
         <form onSubmit={addTask}>
         <div className="ui action input">
@@ -123,15 +123,18 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
           <button className="ui grey button">
             Add
           </button>
-          <Dropdown
+          <Dropdown // filter 
             placeholder='Filter'
             selection
             options={filterOptions}
           />
         </div>
         </form>
-        
-      <div className="taskItems">
+        {/* All tasks container */}
+
+      <div className="taskItems">   
+       
+       {/* Task card */}
        {tasks!==null && tasks.map(task => (
           <div key={task.id} className="task">
             

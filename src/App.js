@@ -14,25 +14,26 @@ function App() {
       
      <div className="ui menu">
       <MyClock />
+     
       <div className="right item">
+      {taskInit && 
+          <div className="timer">
+          <Timer restType="Break" restInterval="3600" restLength="300" />
+          </div>
+      }
         {!(taskInit) && 
-          <button className=" large ui green button" onClick={()=> setTaskInit(true)}>
+          <button className="big ui green button" onClick={()=> setTaskInit(true)}>
           Start
           </button>
         }
         {taskInit && 
-          <button className=" large ui red button" onClick={()=> setTaskInit(false)}>
+          <button className="big ui red button" onClick={()=> setTaskInit(false)}>
           End
           </button>
         }
       </div>
      </div>
        <TodoList/>
-         {taskInit && 
-          <div className="flex-container">
-          <Timer restType="Break" restInterval="3600" restLength="300" />
-          </div>
-      }
       
       </div>
   );
