@@ -3,6 +3,7 @@ import './button.css';
 import './App.css';
 import { Dropdown } from 'semantic-ui-react';
 import '@djthoms/pretty-checkbox';
+import Sortable from 'sortablejs';
 
 
   function TodoList () {
@@ -132,7 +133,7 @@ import '@djthoms/pretty-checkbox';
         </form>
         {/* All tasks container */}
 
-      <div className="taskItems">   
+      <div className="taskItems" id="taskItems">   
        
        {/* Task card */}
        {tasks!==null && tasks.map(task => (
@@ -145,7 +146,7 @@ import '@djthoms/pretty-checkbox';
                 <div className="header">
                  <h2>
                    <div class="ui checkbox">
-                      <input type="checkbox" id={task.id} onChange = {() => onChange(task.id)}/>
+                      <input type="checkbox" defaultChecked={task.completed} id={task.id} onChange = {() => onChange(task.id)}/>
                        <label className="headerLabel" for={task.id}>{task.text}</label>
                   </div>
                 </h2>
