@@ -47,11 +47,12 @@ li {
   right: 0;
 
 }
-.checkbox {
-  margin-right: 10px;
-  margin-left: 0px;
+
+.flex-container {
+  margin: 20px;
 }
 
-h2 {
-  margin: 0px 10px;
+.ui.checkbox  {
+  font-size: 20px;
 }
+

@@ -1,8 +1,9 @@
 import React from 'react';
 import './button.css';
 import './App.css';
-import { Checkbox } from 'semantic-ui-react'
-import { Dropdown } from 'semantic-ui-react'
+import { Dropdown } from 'semantic-ui-react';
+import '@djthoms/pretty-checkbox';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
   function TodoList () {
 
@@ -32,8 +33,7 @@ import { Dropdown } from 'semantic-ui-react'
         completed: false
       }
       e.preventDefault();
-      if (newTask.text.trim()===""){
-        alert('Task title is empty!') 
+      if (newTask.text.trim()===""){ 
         return null
       }
       
@@ -42,7 +42,21 @@ import { Dropdown } from 'semantic-ui-react'
       console.log(tasks)
       
     }
-
+ 
+        function onChange(id) {
+          const updatedTasks = [...tasks].map((task) => {
+            if (task.id === id) {
+              if (task.completed === false) {
+                task.completed = true
+              } else {
+                task.completed = false
+              }
+            }
+            return task
+          })
+          setTasks(updatedTasks)
+        }
+       
       function setTaskDone(id) {
         const updatedTasks = [...tasks].map((task) => {
           if (task.id === id) {
@@ -66,7 +80,6 @@ import { Dropdown } from 'semantic-ui-react'
         })
         setTasks(updatedTasks)
       }
-
 
     function deleteTask(id) {
       // const answer = window.confirm("Delete task?")
@@ -127,14 +140,24 @@ import { Dropdown } from 'semantic-ui-react'
                <div className="content">
                <i className="right floated trash link icon" onClick = {() => deleteTask(task.id)}></i>
                 <div className="header">
-                 
-                  <h2><Checkbox  />{task.text}</h2>
+                 <h2>
+                   <div class="ui checkbox">
+                      <input type="checkbox" id={task.id} onChange = {() => onChange(task.id)}/>
+                       <label className="headerLabel" for={task.id}>{task.text}</label>
+                  </div>
+                </h2>
                 </div>
               </div>
             
             <div className="extra content">
-            <Checkbox label='subtasks' />
+            <div class="ui transparent left icon input">
+              <input type="text" placeholder="Add subtask here.."/>
+              <i class="plus icon"></i>
             </div>
+            
+            </div>
+            
+
             {task.completed===false && <div className="ui negative message">
               <div className="header">
                 This task is pending.
@@ -146,8 +169,10 @@ import { Dropdown } from 'semantic-ui-react'
               </div>
             </div>}
 
+
             </div>
             </div>
+
           </div>
         ))}
       </div>
