@@ -56,3 +56,15 @@ li {
 .timer {
   margin-right: 10px;
 }
+
+.functionArea {
+  display: inline-flex;
+}
+
+#addTaskInput {
+  margin-right: 20px;
+}
+
+.ui.button {
+  background-color: rgb(167, 167, 167);
+}

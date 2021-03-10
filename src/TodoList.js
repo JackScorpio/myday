@@ -1,17 +1,20 @@
 import React from 'react';
 import './button.css';
 import './App.css';
-import { Dropdown } from 'semantic-ui-react';
 import '@djthoms/pretty-checkbox';
-import Sortable from 'sortablejs';
-
 
   function TodoList () {
 
+    // const FILTER_NAMES = Object.keys(FILTER_MAP);
+    const FILTER_MAP = {
+      All: () => true,
+      Pending: tasks => !tasks.completed,
+      Done: tasks => tasks.completed
+    };
+      const [filter, setFilter]= React.useState("All")
       const [tasks, setTasks] = React.useState([])
       const [task, setTask] = React.useState("")
-
- 
+      
       React.useEffect(() => {
         const jsonget = localStorage.getItem("tasks")
         const loadedTasks = JSON.parse(jsonget)
@@ -25,6 +28,25 @@ import Sortable from 'sortablejs';
         const jsonset = JSON.stringify(tasks)
         localStorage.setItem("tasks", jsonset)
       }, [tasks])
+
+      function displayAll() {
+           setFilter("All")
+              
+          };
+
+      function displayDone() {
+            
+            setFilter("Done")
+               
+           };
+      
+      function displayPending() {
+            
+            setFilter("Pending")
+               
+           };
+           
+
 
     const addTask = (e) => {
 
@@ -43,7 +65,7 @@ import Sortable from 'sortablejs';
       console.log(tasks)
       
     }
- 
+
         function onChange(id) {
           const updatedTasks = [...tasks].map((task) => {
             if (task.id === id) {
@@ -58,30 +80,6 @@ import Sortable from 'sortablejs';
           setTasks(updatedTasks)
         }
        
-      function setTaskDone(id) {
-        const updatedTasks = [...tasks].map((task) => {
-          if (task.id === id) {
-            if (task.completed === false) {
-              task.completed = true
-            }
-          }
-          return task
-        })
-        setTasks(updatedTasks)
-      }
-
-      function setTaskPending(id) {
-        const updatedTasks = [...tasks].map((task) => {
-          if (task.id === id) {
-            if (task.completed === true) {
-              task.completed = false
-            }
-          }
-          return task
-        })
-        setTasks(updatedTasks)
-      }
-
     function deleteTask(id) {
       // const answer = window.confirm("Delete task?")
       // if (answer === true) {
@@ -91,30 +89,12 @@ import Sortable from 'sortablejs';
      
     }
 
-    const filterOptions = [
-      {
-        key: 'All',
-        text: 'All',
-        value: 'All',
-      },
-      {
-        key: 'Done',
-        text: 'Done',
-        value: 'Done',
-      },
-      {
-        key: 'Pending',
-        text: 'Pending',
-        value: 'Pending',
-      },
-      
-    ]
-
     return (
-//  Add main task
+//  Add task input
       <div className="tasks">
+        <div className="functionArea">
         <form onSubmit={addTask}>
-        <div className="ui action input">
+        <div className="ui action input" id="addTaskInput">
           <input maxLength="30" 
                 type="text" 
                 onChange={(e) => setTask(e.target.value)}
@@ -124,19 +104,23 @@ import Sortable from 'sortablejs';
           <button className="ui grey button">
             Add
           </button>
-          <Dropdown // filter 
-            placeholder='Filter'
-            selection
-            options={filterOptions}
-          />
+        {/* filter function */}
         </div>
         </form>
+        <div class="ui buttons" >
+            <button class="ui button" onClick={displayAll}>All</button>
+            <button class="ui button" onClick={displayDone}>Done</button>
+            <button class="ui button" onClick={displayPending}>Pending</button>
+        </div>
+        </div>
+        
         {/* All tasks container */}
 
       <div className="taskItems" id="taskItems">   
-       
+        
        {/* Task card */}
-       {tasks!==null && tasks.map(task => (
+       {tasks!==null && 
+       tasks.filter(FILTER_MAP[filter]).map(task => (
           <div key={task.id} className="task">
             
           <div className="flex-container">
@@ -161,7 +145,6 @@ import Sortable from 'sortablejs';
             
             </div>
             
-
             {task.completed===false && <div className="ui negative message">
               <div className="header">
                 This task is pending.
