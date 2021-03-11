@@ -5,7 +5,6 @@ import '@djthoms/pretty-checkbox';
 
   function TodoList () {
 
-    // const FILTER_NAMES = Object.keys(FILTER_MAP);
     const FILTER_MAP = {
       All: () => true,
       Pending: tasks => !tasks.completed,
@@ -14,11 +13,16 @@ import '@djthoms/pretty-checkbox';
       const [filter, setFilter]= React.useState("All")
       const [tasks, setTasks] = React.useState([])
       const [task, setTask] = React.useState("")
-      
+      const [subTask, setSubTask] = React.useState("")
+      const [isActive, setActive] = React.useState(false);
+
+      const toggleClass = () => {
+        setActive(!isActive);
+      };
+
       React.useEffect(() => {
         const jsonget = localStorage.getItem("tasks")
         const loadedTasks = JSON.parse(jsonget)
-
           if(loadedTasks) {
             setTasks(loadedTasks)
           }
@@ -27,45 +31,53 @@ import '@djthoms/pretty-checkbox';
       React.useEffect(() => {
         const jsonset = JSON.stringify(tasks)
         localStorage.setItem("tasks", jsonset)
-      }, [tasks])
+      }, [JSON.stringify(tasks)])
+      
 
       function displayAll() {
-           setFilter("All")
-              
+           setFilter("All")  
           };
 
       function displayDone() {
-            
-            setFilter("Done")
-               
+            setFilter("Done")  
            };
       
       function displayPending() {
-            
             setFilter("Pending")
-               
            };
-           
-
 
     const addTask = (e) => {
 
       const newTask = {
         id: new Date().getTime(),
         text: task,
-        completed: false
+        completed: false,
+        subTasks: [
+          {id: "1", text: "asd", completed: false},
+          {id: "2", text: "xyz", completed: true} 
+        ]
       }
       e.preventDefault();
-      if (newTask.text.trim()===""){ 
-        return null
-      }
-      
-      setTasks([...tasks].concat(newTask))
-      setTask("")
-      console.log(tasks)
-      
+      if (newTask.text.trim()!==""){ 
+        setTasks([...tasks].concat(newTask))
+        setTask("")
+      }      
     }
 
+    const addSubTask = (e, task) => {
+      e.preventDefault();
+      const newSubTask ={
+        id: new Date().getTime(),
+        text: subTask,
+        completed: false,
+      }
+            
+      // if (newSubTask.text.trim()!==""){
+        task.subTasks.push(newSubTask)
+      // }
+      setTasks(tasks);
+      setSubTask("");
+    }
         function onChange(id) {
           const updatedTasks = [...tasks].map((task) => {
             if (task.id === id) {
@@ -101,16 +113,16 @@ import '@djthoms/pretty-checkbox';
                 value={task}
                 placeholder="Add Todo card..">
           </input>
-          <button className="ui grey button">
+          <button className="ui blue button">
             Add
           </button>
         {/* filter function */}
         </div>
         </form>
-        <div class="ui buttons" >
-            <button class="ui button" onClick={displayAll}>All</button>
-            <button class="ui button" onClick={displayDone}>Done</button>
-            <button class="ui button" onClick={displayPending}>Pending</button>
+        <div className="ui buttons" >
+            <button className="ui button" onClick={displayAll}>All</button>
+            <button className="ui button" onClick={displayDone}>Done</button>
+            <button className="ui button" onClick={displayPending}>Pending</button>
         </div>
         </div>
         
@@ -122,28 +134,32 @@ import '@djthoms/pretty-checkbox';
        {tasks!==null && 
        tasks.filter(FILTER_MAP[filter]).map(task => (
           <div key={task.id} className="task">
-            
-          <div className="flex-container">
-            <div className="ui raised card">
+            <div className="flex-container">
+             <div className="ui raised card dnd-item">
                <div className="content">
-               <i className="right floated trash link icon" onClick = {() => deleteTask(task.id)}></i>
+                <i className="right floated trash link icon" onClick = {() => deleteTask(task.id)}></i>
                 <div className="header">
                  <h2>
-                   <div class="ui checkbox">
+                   <div className="ui checkbox">
                       <input type="checkbox" defaultChecked={task.completed} id={task.id} onChange = {() => onChange(task.id)}/>
-                       <label className="headerLabel" for={task.id}>{task.text}</label>
-                  </div>
-                </h2>
+                       <label className="headerLabel" htmlFor={task.id}>{task.text}</label>
+                    </div>
+                  </h2>
                 </div>
               </div>
-            
-            <div className="extra content">
-            <div class="ui transparent left icon input">
-              <input type="text" placeholder="Add subtask here.."/>
-              <i class="plus icon"></i>
-            </div>
-            
-            </div>
+            {/* Subtask */}
+              <div className="subTask-container">
+                <div className="subTodoList">
+                  {task.subTasks.map(subTask => 
+                    <div key={subTask.id} className="subTaskUndone" onClick={toggleClass}>{subTask.text}</div>
+                  )}
+                </div>
+              </div>
+              <form onSubmit={(e) => addSubTask(e, task)} >
+              <div className="ui input">
+                <input className="subtaskInput" type="text" id={'subTask' + task.id} maxLength="20" onChange={(e) => setSubTask(e.target.value) } placeholder="Add subtask here.."/>
+              </div>
+              </form>
             
             {task.completed===false && <div className="ui negative message">
               <div className="header">
@@ -155,11 +171,8 @@ import '@djthoms/pretty-checkbox';
                 This task is done.
               </div>
             </div>}
-
-
             </div>
             </div>
-
           </div>
         ))}
       </div>
