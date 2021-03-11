@@ -52,10 +52,7 @@ import '@djthoms/pretty-checkbox';
         id: new Date().getTime(),
         text: task,
         completed: false,
-        subTasks: [
-          {id: "1", text: "asd", completed: false},
-          {id: "2", text: "xyz", completed: true} 
-        ]
+        subTasks: []
       }
       e.preventDefault();
       if (newTask.text.trim()!==""){ 
