@@ -70,7 +70,7 @@ li {
   font-size: 16px;
 }
 .subTaskUndone {
-  background-color: rgb(241, 248, 248);
+  background-color: rgb(236, 252, 252);
   margin: 3px;
 }
 
@@ -78,4 +78,15 @@ li {
   background-color: rgb(241, 248, 248);
   margin: 3px;
   text-decoration: line-through;
+}
+
+.ui.mini.button {
+  transform: scale(0.7);
+  position: absolute;
+  right: 15px;
+  padding: 0.6em;
+}
+
+#subtasklabel {
+  font-size: 12px;
 }

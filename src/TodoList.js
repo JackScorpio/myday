@@ -13,6 +13,7 @@ import '@djthoms/pretty-checkbox';
       const [filter, setFilter]= React.useState("All")
       const [tasks, setTasks] = React.useState([])
       const [task, setTask] = React.useState("")
+      const [subTasks, setsubTasks] = React.useState([])
       const [subTask, setSubTask] = React.useState("")
       const [isActive, setActive] = React.useState(false);
 
@@ -68,13 +69,26 @@ import '@djthoms/pretty-checkbox';
         text: subTask,
         completed: false,
       }
-            
-      // if (newSubTask.text.trim()!==""){
         task.subTasks.push(newSubTask)
       // }
+      setsubTasks(task.subTasks)
+      // setTask(task);
       setTasks(tasks);
       setSubTask("");
+      setTask("")
     }
+
+    const deleteSubTask = (task, id) => {
+      
+      console.log(id)
+      const newSubTasks = task.subTasks.splice(task.subTasks.findIndex(t => t.id === id ), 1 )
+      console.log(newSubTasks)
+      setsubTasks(newSubTasks)
+      setTasks(tasks);
+      setTask("")
+    }
+
+
         function onChange(id) {
           const updatedTasks = [...tasks].map((task) => {
             if (task.id === id) {
@@ -147,14 +161,23 @@ import '@djthoms/pretty-checkbox';
             {/* Subtask */}
               <div className="subTask-container">
                 <div className="subTodoList">
+                  <i></i>
                   {task.subTasks.map(subTask => 
-                    <div key={subTask.id} className="subTaskUndone" onClick={toggleClass}>{subTask.text}</div>
+                    <div id="subtask">
+                      <div key={subTask.id} className="ui checkbox">
+                        <input type="checkbox" name="example"/>
+                        <label className="subTaskUndone" id="subtasklabel">{subTask.text}</label>
+                      </div>
+                      <button className="ui mini icon button" onClick = {() => deleteSubTask(task, subTask.id)}>
+                      <i className="x icon"></i>
+                      </button>
+                      </div>
                   )}
                 </div>
               </div>
               <form onSubmit={(e) => addSubTask(e, task)} >
               <div className="ui input">
-                <input className="subtaskInput" type="text" id={'subTask' + task.id} maxLength="20" onChange={(e) => setSubTask(e.target.value) } placeholder="Add subtask here.."/>
+                <input className="subtaskInput" type="text" id={'subTask' + task.id} maxLength="18" onChange={(e) => setSubTask(e.target.value) } placeholder="Add subtask here.."/>
               </div>
               </form>
             
