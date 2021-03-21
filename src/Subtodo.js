@@ -54,12 +54,11 @@ const Subtodo = ({task, tasks, setTasks, setTask}) => {
   return (
     <div className="subTask-container">
       <div className="subTodoList">
-                  
         {task.subTasks.map(subTask => 
           <div id="subtask">
             <div key={subTask.id} className="ui checkbox">
               <input type="checkbox" defaultChecked={subTask.completed} id={subTask.id} onChange = {() => onSubTaskChange(task, subTask.id)}/>
-              <label htmlFor={subTask.id} id="subtasklabel">{subTask.text}</label>
+              <label className={subTask.completed ? "subTaskDone" : "subTaskUndone"} htmlFor={subTask.id} id="subtasklabel">{subTask.text}</label>
             </div>
               <button className="ui mini icon button" onClick = {() => deleteSubTask(task, subTask.id)}>
               <i className="x icon"></i>

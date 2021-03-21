@@ -14,11 +14,7 @@ import Subtodo from './Subtodo';
       const [tasks, setTasks] = useState([])
       const [task, setTask] = useState("")
       
-      const [isActive, setActive] = useState(false);
 
-      const toggleClass = () => {
-        setActive(!isActive);
-      };
 
       useEffect(() => {
         const jsonget = localStorage.getItem("tasks")
