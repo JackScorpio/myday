@@ -89,4 +89,9 @@ li {
 
 #subtasklabel {
   font-size: 12px;
+  cursor: pointer;
+}
+
+#headerLabel {
+  cursor: pointer;
 }

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './button.css';
-import './App.css';
-import '@djthoms/pretty-checkbox';
+import Subtodo from './Subtodo';
+
 
   function TodoList () {
 
@@ -10,18 +10,17 @@ import '@djthoms/pretty-checkbox';
       Pending: tasks => !tasks.completed,
       Done: tasks => tasks.completed
     };
-      const [filter, setFilter]= React.useState("All")
-      const [tasks, setTasks] = React.useState([])
-      const [task, setTask] = React.useState("")
-      const [subTasks, setsubTasks] = React.useState([])
-      const [subTask, setSubTask] = React.useState("")
-      const [isActive, setActive] = React.useState(false);
+      const [filter, setFilter]= useState("All")
+      const [tasks, setTasks] = useState([])
+      const [task, setTask] = useState("")
+      
+      const [isActive, setActive] = useState(false);
 
       const toggleClass = () => {
         setActive(!isActive);
       };
 
-      React.useEffect(() => {
+      useEffect(() => {
         const jsonget = localStorage.getItem("tasks")
         const loadedTasks = JSON.parse(jsonget)
           if(loadedTasks) {
@@ -29,7 +28,7 @@ import '@djthoms/pretty-checkbox';
           }
       }, [])
 
-      React.useEffect(() => {
+      useEffect(() => {
         const jsonset = JSON.stringify(tasks)
         localStorage.setItem("tasks", jsonset)
       }, [JSON.stringify(tasks)])
@@ -48,7 +47,6 @@ import '@djthoms/pretty-checkbox';
            };
 
     const addTask = (e) => {
-
       const newTask = {
         id: new Date().getTime(),
         text: task,
@@ -61,33 +59,6 @@ import '@djthoms/pretty-checkbox';
         setTask("")
       }      
     }
-
-    const addSubTask = (e, task) => {
-      e.preventDefault();
-      const newSubTask ={
-        id: new Date().getTime(),
-        text: subTask,
-        completed: false,
-      }
-        task.subTasks.push(newSubTask)
-      // }
-      setsubTasks(task.subTasks)
-      // setTask(task);
-      setTasks(tasks);
-      setSubTask("");
-      setTask("")
-    }
-
-    const deleteSubTask = (task, id) => {
-      
-      console.log(id)
-      const newSubTasks = task.subTasks.splice(task.subTasks.findIndex(t => t.id === id ), 1 )
-      console.log(newSubTasks)
-      setsubTasks(newSubTasks)
-      setTasks(tasks);
-      setTask("")
-    }
-
 
         function onChange(id) {
           const updatedTasks = [...tasks].map((task) => {
@@ -102,6 +73,8 @@ import '@djthoms/pretty-checkbox';
           })
           setTasks(updatedTasks)
         }
+
+        
        
     function deleteTask(id) {
       // const answer = window.confirm("Delete task?")
@@ -131,9 +104,9 @@ import '@djthoms/pretty-checkbox';
         </div>
         </form>
         <div className="ui buttons" >
-            <button className="ui button" onClick={displayAll}>All</button>
-            <button className="ui button" onClick={displayDone}>Done</button>
-            <button className="ui button" onClick={displayPending}>Pending</button>
+            <button className="ui button" onClick={() => displayAll()}>All</button>
+            <button className="ui button" onClick={() => displayDone()}>Done</button>
+            <button className="ui button" onClick={() => displayPending()}>Pending</button>
         </div>
         </div>
         
@@ -146,41 +119,26 @@ import '@djthoms/pretty-checkbox';
        tasks.filter(FILTER_MAP[filter]).map(task => (
           <div key={task.id} className="task">
             <div className="flex-container">
-             <div className="ui raised card dnd-item">
+             <div className="ui raised card draggable">
                <div className="content">
                 <i className="right floated trash link icon" onClick = {() => deleteTask(task.id)}></i>
                 <div className="header">
                  <h2>
                    <div className="ui checkbox">
                       <input type="checkbox" defaultChecked={task.completed} id={task.id} onChange = {() => onChange(task.id)}/>
-                       <label className="headerLabel" htmlFor={task.id}>{task.text}</label>
+                       <label id="headerLabel" htmlFor={task.id}>{task.text}</label>
                     </div>
                   </h2>
                 </div>
               </div>
-            {/* Subtask */}
-              <div className="subTask-container">
-                <div className="subTodoList">
-                  <i></i>
-                  {task.subTasks.map(subTask => 
-                    <div id="subtask">
-                      <div key={subTask.id} className="ui checkbox">
-                        <input type="checkbox" name="example"/>
-                        <label className="subTaskUndone" id="subtasklabel">{subTask.text}</label>
-                      </div>
-                      <button className="ui mini icon button" onClick = {() => deleteSubTask(task, subTask.id)}>
-                      <i className="x icon"></i>
-                      </button>
-                      </div>
-                  )}
-                </div>
-              </div>
-              <form onSubmit={(e) => addSubTask(e, task)} >
-              <div className="ui input">
-                <input className="subtaskInput" type="text" id={'subTask' + task.id} maxLength="18" onChange={(e) => setSubTask(e.target.value) } placeholder="Add subtask here.."/>
-              </div>
-              </form>
-            
+    
+        <Subtodo 
+          task={task}
+          tasks={tasks}
+          setTasks={setTasks}
+          setTask={setTask}
+        />
+
             {task.completed===false && <div className="ui negative message">
               <div className="header">
                 This task is pending.
