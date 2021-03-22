@@ -14,8 +14,6 @@ import Subtodo from './Subtodo';
       const [tasks, setTasks] = useState([])
       const [task, setTask] = useState("")
       
-
-
       useEffect(() => {
         const jsonget = localStorage.getItem("tasks")
         const loadedTasks = JSON.parse(jsonget)
@@ -27,7 +25,7 @@ import Subtodo from './Subtodo';
       useEffect(() => {
         const jsonset = JSON.stringify(tasks)
         localStorage.setItem("tasks", jsonset)
-      }, [JSON.stringify(tasks)])
+      }, [tasks] )
       
 
       function displayAll() {
@@ -132,7 +130,6 @@ import Subtodo from './Subtodo';
           task={task}
           tasks={tasks}
           setTasks={setTasks}
-          setTask={setTask}
         />
 
             {task.completed===false && <div className="ui negative message">

@@ -2,14 +2,17 @@ import React, { useEffect, useState} from 'react';
 import './button.css';
 
 
-const Subtodo = ({task, tasks, setTasks, setTask}) => {
-  const [subTasks, setsubTasks] = useState([])
-  const [subTask, setSubTask] = useState("")
+const Subtodo = ({task, tasks, setTasks}) => {
+  const [subTasks, setsubTasks] = useState(task.subTasks)
+  const [subTask, setsubTask] = useState("")
+
+  console.log(subTasks)
 
   useEffect(() => {
-    const jsonset = JSON.stringify(tasks)
-    localStorage.setItem("tasks", jsonset)
-  }, [JSON.stringify(subTasks)])
+    const newtasks = JSON.stringify(tasks)
+    localStorage.setItem("tasks", newtasks)
+    console.log("subtask change deteced!!")
+}, [JSON.stringify(subTasks)])
 
   const addSubTask = (e, task) => {
     e.preventDefault();
@@ -23,7 +26,7 @@ const Subtodo = ({task, tasks, setTasks, setTask}) => {
     setsubTasks(task.subTasks)
     // setTask(task);
     setTasks(tasks);
-    setSubTask("");
+    setsubTask("");
     
   }
 
@@ -32,12 +35,11 @@ const Subtodo = ({task, tasks, setTasks, setTask}) => {
     const newSubTasks = task.subTasks.splice(task.subTasks.findIndex(t => t.id === id ), 1 )
     console.log(newSubTasks)
     setsubTasks(newSubTasks)
-    setTasks(tasks);
-    setTask("")
+    // setTasks(tasks);
+
   }
 
   function onSubTaskChange(task, id) {
-
     const targetIndex = task.subTasks.findIndex(t => t.id === id )
 
     if (task.subTasks[targetIndex].completed === false) {
@@ -45,18 +47,19 @@ const Subtodo = ({task, tasks, setTasks, setTask}) => {
         } else {
           task.subTasks[targetIndex].completed = false
         }
-    
+    let updatedSubtasks = [...task.subTasks]
   console.log(task.subTasks[targetIndex].completed)
-  console.log(task.subTasks)
-  setsubTasks(task.subTasks);
+  setsubTasks(updatedSubtasks);
+  console.log(JSON.stringify(subTasks))
+  console.log(tasks)
   }
 
   return (
     <div className="subTask-container">
       <div className="subTodoList">
         {task.subTasks.map(subTask => 
-          <div id="subtask">
-            <div key={subTask.id} className="ui checkbox">
+          <div key={subTask.id} id="subtask">
+            <div  className="ui checkbox">
               <input type="checkbox" defaultChecked={subTask.completed} id={subTask.id} onChange = {() => onSubTaskChange(task, subTask.id)}/>
               <label className={subTask.completed ? "subTaskDone" : "subTaskUndone"} htmlFor={subTask.id} id="subtasklabel">{subTask.text}</label>
             </div>
@@ -68,7 +71,7 @@ const Subtodo = ({task, tasks, setTasks, setTask}) => {
       </div>
         <form onSubmit={(e) => addSubTask(e, task)} >
           <div className="ui input">
-           <input className="subtaskInput" type="text" maxLength="18" value={subTask} onChange={(e) => setSubTask(e.target.value) } placeholder="Add subtask here.."/>
+           <input className="subtaskInput" type="text" maxLength="18" value={subTask} onChange={(e) => setsubTask(e.target.value) } placeholder="Add subtask here.."/>
           </div>
         </form>
     </div>
