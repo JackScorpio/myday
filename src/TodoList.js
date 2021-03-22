@@ -80,7 +80,8 @@ import Subtodo from './Subtodo';
     }
 
     return (
-//  Add task input
+//  Add task input.
+
       <div className="tasks">
         <div className="functionArea">
         <form onSubmit={addTask}>
