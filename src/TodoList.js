@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './button.css';
 import Subtodo from './Subtodo';
+import Dropdown from './Dropdown'
 
 
   function TodoList () {
 
-    const FILTER_MAP = {
+    const options = {
       All: () => true,
       Pending: tasks => !tasks.completed,
       Done: tasks => tasks.completed
@@ -26,19 +27,6 @@ import Subtodo from './Subtodo';
         const jsonset = JSON.stringify(tasks)
         localStorage.setItem("tasks", jsonset)
       }, [tasks, task] )
-      
-
-      function displayAll() {
-           setFilter("All")  
-          };
-
-      function displayDone() {
-            setFilter("Done")  
-           };
-      
-      function displayPending() {
-            setFilter("Pending")
-           };
 
     const addTask = (e) => {
       const newTask = {
@@ -105,11 +93,11 @@ import Subtodo from './Subtodo';
         {/* filter function */}
         </div>
         </form>
-        <div className="ui buttons" >
-            <button className="ui button" onClick={() => displayAll()}>All</button>
-            <button className="ui button" onClick={() => displayDone()}>Done</button>
-            <button className="ui button" onClick={() => displayPending()}>Pending</button>
-        </div>
+        <Dropdown 
+          filter = {filter}
+          onFilterChange={setFilter}
+          options={options}
+        />
         </div>
         
         {/* All tasks container */}
@@ -118,7 +106,7 @@ import Subtodo from './Subtodo';
         
        {/* Task card */}
        {tasks!==null && 
-       tasks.filter(FILTER_MAP[filter]).map(task => (
+       tasks.filter(options[filter]).map(task => (
           <div key={task.id} className="task" draggable="true">
             <div className="flex-container">
              <div className="ui raised card draggable">
