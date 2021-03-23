@@ -55,10 +55,17 @@ import Subtodo from './Subtodo';
     }
 
         function onChange(id) {
-          const updatedTasks = [...tasks].map((task) => {
+          let updatedTasks = [...tasks].map((task) => {
             if (task.id === id) {
               if (task.completed === false) {
                 task.completed = true
+                if (task.subTasks) {
+                  task.subTasks.map((subTask) => {
+                    if(subTask.completed === false) {
+                      subTask.completed = true
+                    }
+                  })
+                }
               } else {
                 task.completed = false
               }
@@ -120,7 +127,7 @@ import Subtodo from './Subtodo';
                 <div className="header">
                  <h2>
                    <div className="ui checkbox">
-                      <input type="checkbox" defaultChecked={task.completed} id={task.id} onChange = {() => onChange(task.id)}/>
+                    <input type="checkbox" checked={task.completed} id={task.id} onChange = {() => onChange(task.id)}/>
                        <label id="headerLabel" htmlFor={task.id}>{task.text}</label>
                     </div>
                   </h2>
@@ -132,17 +139,6 @@ import Subtodo from './Subtodo';
           tasks={tasks}
           setTasks={setTasks}
         />
-
-            {task.completed===false && <div className="ui negative message">
-              <div className="header">
-                This task is pending.
-              </div>
-            </div>}
-            {task.completed===true && <div className="ui positive message">
-              <div className="header">
-                This task is done.
-              </div>
-            </div>}
             </div>
             </div>
           </div>

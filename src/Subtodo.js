@@ -23,6 +23,7 @@ const Subtodo = ({task, tasks, setTasks}) => {
     }
       task.subTasks.push(newSubTask)
     // }
+    task.completed = false
     setsubTasks(task.subTasks)
     // setTask(task);
     setTasks(tasks);
@@ -46,10 +47,12 @@ const Subtodo = ({task, tasks, setTasks}) => {
           task.subTasks[targetIndex].completed = true
         } else {
           task.subTasks[targetIndex].completed = false
+          task.completed = false
         }
     let updatedSubtasks = [...task.subTasks]
   console.log(task.subTasks[targetIndex].completed)
   setsubTasks(updatedSubtasks);
+  setTasks(tasks);
   console.log(JSON.stringify(subTasks))
   console.log(tasks)
   }
@@ -60,7 +63,7 @@ const Subtodo = ({task, tasks, setTasks}) => {
         {task.subTasks.map(subTask => 
           <div key={subTask.id} id="subtask">
             <div  className="ui checkbox">
-              <input type="checkbox" defaultChecked={subTask.completed} id={subTask.id} onChange = {() => onSubTaskChange(task, subTask.id)}/>
+              <input type="checkbox" checked={subTask.completed} id={subTask.id} onChange = {() => onSubTaskChange(task, subTask.id)}/>
               <label className={subTask.completed ? "subTaskDone" : "subTaskUndone"} htmlFor={subTask.id} id="subtasklabel">{subTask.text}</label>
             </div>
               <button className="ui mini icon button" onClick = {() => deleteSubTask(task, subTask.id)}>
@@ -70,7 +73,7 @@ const Subtodo = ({task, tasks, setTasks}) => {
         )}
       </div>
         <form onSubmit={(e) => addSubTask(e, task)} >
-          <div className="ui input">
+          <div className="ui input" id="addsubtask">
            <input className="subtaskInput" type="text" maxLength="18" value={subTask} onChange={(e) => setsubTask(e.target.value) } placeholder="Add subtask here.."/>
           </div>
         </form>
