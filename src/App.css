@@ -10,7 +10,8 @@ body {
 }
 
 h1 {
-  font-size: 14px;
+  font-size: 22px;
+  color: brown;
   /* font-family: Georgia; */
   /* margin-top: 50px;
   margin-bottom: 50px; */
@@ -53,6 +54,7 @@ li {
 }
 
 .timer {
+  display: inline-flex;
   margin-right: 10px;
 }
 
@@ -104,3 +106,19 @@ li {
  margin-bottom: 10px;
 
 }
+
+.header {
+  background-color: rgb(255, 255, 255);
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.startbutton {
+  display: block;
+  margin: 5px 0px;
+}
+
+.clockcontainer {
+  justify-content: center;
+}
+

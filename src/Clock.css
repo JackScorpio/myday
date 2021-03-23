@@ -1,8 +1,7 @@
 .clock {
-
-  /* transform: translateX(-50%) translateY(-50%); */
+  display: block;
   color: #1e2729;
-  font-size: 60px;
+  font-size: 35px;
   font-family: Orbitron;
   letter-spacing: 7px;
   padding: 20px;

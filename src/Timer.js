@@ -39,7 +39,7 @@ const Timer = (props) => {
     });
 
     return (
-        <div className="ui orange info floating message">
+        <div className="message">
            
         { minutes === 0 && seconds === 0
             ? null

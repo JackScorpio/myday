@@ -7,23 +7,17 @@ import TodoList from './TodoList';
 
 
 function App() {
-  Notification.requestPermission();
+  // Notification.requestPermission();
   const [taskInit, setTaskInit] = useState(false)
-
 
   return (
     <div className="App">
-      
-     <div className="ui menu">
+     <div className="header">
+     <div className="clockcontainer">
       <MyClock />
-     
-      <div className="right item">
-      {taskInit && 
-          <div className="timer">
-          <Timer restType="Break" restInterval="15" restLength="300" />
-          </div>
-      }
-        {!(taskInit) && 
+      </div>
+       <div className="startbutton">
+         {!(taskInit) && 
           <button className="big ui green button" onClick={()=> setTaskInit(true)}>
           Start
           </button>
@@ -33,7 +27,15 @@ function App() {
           End
           </button>
         }
-      </div>
+         {taskInit && 
+          <div className="timer">
+          <Timer restType="Break" restInterval="15" restLength="300" />
+          </div>
+        }
+       </div>
+        
+       
+      
      </div>
        <TodoList/>
       
