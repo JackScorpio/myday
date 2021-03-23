@@ -6,12 +6,10 @@ const Subtodo = ({task, tasks, setTask, setTasks}) => {
   const [subTasks, setsubTasks] = useState(task.subTasks)
   const [subTask, setsubTask] = useState("")
 
-  console.log(subTasks)
-
   useEffect(() => {
     const newtasks = JSON.stringify(tasks)
     localStorage.setItem("tasks", newtasks)
-    console.log("subtask change deteced!!")
+
 }, [JSON.stringify(subTasks)])
 
   const addSubTask = (e, task) => {
@@ -31,12 +29,8 @@ const Subtodo = ({task, tasks, setTask, setTasks}) => {
   }
 
   const deleteSubTask = (task, id) => {
-    console.log(id)
     const newSubTasks = task.subTasks.splice(task.subTasks.findIndex(t => t.id === id ), 1 )
-    console.log(newSubTasks)
     setsubTasks(newSubTasks)
-    // setTasks(tasks);
-
   }
 
   function onSubTaskChange(task, id) {
