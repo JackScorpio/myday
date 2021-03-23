@@ -25,7 +25,7 @@ import Subtodo from './Subtodo';
       useEffect(() => {
         const jsonset = JSON.stringify(tasks)
         localStorage.setItem("tasks", jsonset)
-      }, [tasks] )
+      }, [tasks, task] )
       
 
       function displayAll() {
@@ -137,6 +137,7 @@ import Subtodo from './Subtodo';
         <Subtodo 
           task={task}
           tasks={tasks}
+          setTask={setTask}
           setTasks={setTasks}
         />
             </div>

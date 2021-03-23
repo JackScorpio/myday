@@ -2,7 +2,7 @@ import React, { useEffect, useState} from 'react';
 import './button.css';
 
 
-const Subtodo = ({task, tasks, setTasks}) => {
+const Subtodo = ({task, tasks, setTask, setTasks}) => {
   const [subTasks, setsubTasks] = useState(task.subTasks)
   const [subTask, setsubTask] = useState("")
 
@@ -21,14 +21,13 @@ const Subtodo = ({task, tasks, setTasks}) => {
       text: subTask,
       completed: false,
     }
-      task.subTasks.push(newSubTask)
-    // }
+      const newSubTasks = task.subTasks.push(newSubTask)
+
     task.completed = false
-    setsubTasks(task.subTasks)
-    // setTask(task);
-    setTasks(tasks);
+    let updatedTasks = [...tasks]
+    setsubTasks(newSubTasks)
     setsubTask("");
-    
+    setTasks(updatedTasks);
   }
 
   const deleteSubTask = (task, id) => {
@@ -50,11 +49,9 @@ const Subtodo = ({task, tasks, setTasks}) => {
           task.completed = false
         }
     let updatedSubtasks = [...task.subTasks]
-  console.log(task.subTasks[targetIndex].completed)
+    let updatedTasks = [...tasks]
   setsubTasks(updatedSubtasks);
-  setTasks(tasks);
-  console.log(JSON.stringify(subTasks))
-  console.log(tasks)
+  setTasks(updatedTasks);
   }
 
   return (
