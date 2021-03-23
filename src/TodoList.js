@@ -119,7 +119,7 @@ import Subtodo from './Subtodo';
        {/* Task card */}
        {tasks!==null && 
        tasks.filter(FILTER_MAP[filter]).map(task => (
-          <div key={task.id} className="task">
+          <div key={task.id} className="task" draggable="true">
             <div className="flex-container">
              <div className="ui raised card draggable">
                <div className="content">
@@ -140,6 +140,17 @@ import Subtodo from './Subtodo';
           setTask={setTask}
           setTasks={setTasks}
         />
+
+          {task.completed===false && <div className="ui negative message">
+              <div className="header">
+                This task is pending.
+              </div>
+            </div>}
+          {task.completed===true && <div className="ui positive message">
+              <div className="header">
+                This task is done.
+              </div>
+            </div>}
             </div>
             </div>
           </div>
