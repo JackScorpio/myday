@@ -7,7 +7,7 @@ import TodoList from './TodoList';
 
 
 function App() {
-
+  Notification.requestPermission();
   const [taskInit, setTaskInit] = useState(false)
 
   return (

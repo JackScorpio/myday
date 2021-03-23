@@ -1,12 +1,28 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 
 
 const Dropdown = ({ filter, onFilterChange}) => {
 
   const [open, setOpen] = useState(false);
-  
+  const ref = useRef();
+  useEffect(() => {
+
+    const onBodyClick = (e) => {
+      if (ref.current && ref.current.contains(e.target)) {
+        return;
+      }
+      setOpen(false);
+    }
+
+    document.body.addEventListener('click', onBodyClick);
+
+    return () => {
+      document.body.removeEventListener('click', onBodyClick);
+    }
+  }, [])
+
   return(
-  <div className="ui form">
+  <div ref={ref} className="ui form">
     <div className="field">
       <div 
         onClick={() => setOpen(!open)}
