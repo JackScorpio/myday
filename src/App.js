@@ -10,6 +10,7 @@ function App() {
   Notification.requestPermission();
   const [taskInit, setTaskInit] = useState(false)
 
+
   return (
     <div className="App">
       
@@ -19,7 +20,7 @@ function App() {
       <div className="right item">
       {taskInit && 
           <div className="timer">
-          <Timer restType="Break" restInterval="3600" restLength="300" />
+          <Timer restType="Break" restInterval="15" restLength="300" />
           </div>
       }
         {!(taskInit) && 

@@ -21,7 +21,8 @@ const Timer = (props) => {
                         sticky: true
                       })
                     notice.onclick = function() {
-                        window.focus();                      
+                        window.focus();
+                        setMinutes("45")     
                     } 
                     notice.onclose = function () {
                         setMinutes("45")
