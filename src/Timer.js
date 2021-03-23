@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 
 const Timer = (props) => {
-    const {initialMinute = 45,initialSeconds = 0} = props;
+    const {initialMinute = 0, initialSeconds = 10} = props;
     const [ minutes, setMinutes ] = useState(initialMinute);
     const [seconds, setSeconds ] =  useState(initialSeconds);
     useEffect(()=>{
@@ -14,8 +14,18 @@ const Timer = (props) => {
             if (seconds === 0) {
                 if (minutes === 0) {
                     clearInterval(myInterval)
-                    alert("Take a break and get some water!")
-                    setMinutes("45")
+                    let notice = new Notification("Time for a break and drink water!", {
+                        silent: false,
+                        renotify: false,
+                        requireInteraction: true,
+                        sticky: true
+                      })
+                    notice.onclick = function() {
+                        window.focus();                      
+                    } 
+                    notice.onclose = function () {
+                        setMinutes("45")
+                      }
                 } else {
                     setMinutes(minutes - 1);
                     setSeconds(59);
