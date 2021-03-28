@@ -30,15 +30,6 @@ li {
   list-style-type: none;
 }
 
-.taskItems {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 300px);
-  grid-gap: 5px;
-  /* grid-auto-rows: minmax(200px, auto); */
-  justify-content: center;
-  margin: 0 300px;
-}
-
 .card {
   opacity: 0.8;
 }
@@ -102,24 +93,30 @@ li {
   visibility: hidden
 }
 
-#addsubtask {
- margin-bottom: 10px;
+.startContainer { 
+  margin-top: auto;
+  margin-bottom: auto;
 
 }
 
-.header {
+.taskstatusbar {
+  font-weight: 700;
+}
+
+.headerBar {
   background-color: rgb(255, 255, 255);
-  padding: 5px;
-  margin-bottom: 10px;
 }
 
-.startbutton {
-  display: block;
-  margin: 5px 0px;
+.tasks {
+  margin:2rem;
 }
 
-.clockcontainer {
+.functionArea {
   justify-content: center;
-  padding: 5px 0px;
+  height: 3rem;
+  margin-bottom: 2rem;
 }
 
+.addtaskArea {
+  margin-right: 2rem;
+}

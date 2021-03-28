@@ -12,33 +12,30 @@ function App() {
 
   return (
     <div className="App">
-     <div className="header">
-     <div className="clockcontainer">
-      <MyClock />
+     <div className="ui stackable two column padded grid headerBar">
+      <div className="column">
+        <MyClock />
       </div>
-       <div className="startbutton">
-         {!(taskInit) && 
-          <button className="big ui green button" onClick={()=> setTaskInit(true)}>
-          Start
-          </button>
-        }
-        {taskInit && 
-          <button className="big ui red button" onClick={()=> setTaskInit(false)}>
-          End
-          </button>
-        }
+      <div className="column startContainer">
+          {!(taskInit) && 
+            <button className="ui big green button" onClick={()=> setTaskInit(true)}>
+            Start
+            </button>
+          }
+          {taskInit && 
+            <button className="ui big red button" onClick={()=> setTaskInit(false)}>
+            End
+            </button>
+          }
          {taskInit && 
           <div className="timer">
           <Timer restType="Break" restInterval="15" restLength="300" />
           </div>
         }
-       </div>
-        
-       
-      
+
+      </div>
      </div>
        <TodoList/>
-      
       </div>
   );
 }

@@ -78,31 +78,41 @@ import Dropdown from './Dropdown'
 //  Add task input.
 
       <div className="tasks">
-        <div className="functionArea">
-        <form onSubmit={addTask}>
-        <div className="ui action input" id="addTaskInput">
-          <input maxLength="30" 
-                type="text" 
-                onChange={(e) => setTask(e.target.value)}
-                value={task}
-                placeholder="Add Todo card..">
-          </input>
-          <button className="ui blue button">
-            Add
-          </button>
-        {/* filter function */}
+        <div className="functionArea" >
+        <div className="ui stackable centered grid container">
+          <div className="addtaskArea">
+          <form className="ui form" onSubmit={addTask}>
+          <div className="ui action input" id="addTaskInput">
+            <input maxLength="30" 
+                  type="text" 
+                  onChange={(e) => setTask(e.target.value)}
+                  value={task}
+                  placeholder="Add Todo card..">
+            </input>
+            <button className="ui blue button">
+              Add
+            </button>
+          </div>
+          </form>
+          
+          </div>
+          
+          <div className="filterContainer">
+          <Dropdown 
+            filter = {filter}
+            onFilterChange={setFilter}
+            options={options}
+          />
+          </div>
+
+          </div>
         </div>
-        </form>
-        <Dropdown 
-          filter = {filter}
-          onFilterChange={setFilter}
-          options={options}
-        />
-        </div>
+        
+        
         
         {/* All tasks container */}
 
-      <div className="taskItems" id="taskItems">   
+      <div className="ui centered grid taskItems" id="taskItems">   
         
        {/* Task card */}
        {tasks!==null && 
@@ -130,12 +140,12 @@ import Dropdown from './Dropdown'
         />
 
           {task.completed===false && <div className="ui negative message">
-              <div className="header">
+              <div className="taskstatusbar">
                 This task is pending.
               </div>
             </div>}
           {task.completed===true && <div className="ui positive message">
-              <div className="header">
+              <div className="taskstatusbar">
                 This task is done.
               </div>
             </div>}

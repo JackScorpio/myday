@@ -22,8 +22,8 @@ const Dropdown = ({ filter, onFilterChange}) => {
   }, [])
 
   return(
-  <div ref={ref} className="ui form">
-    <div className="field">
+  <div ref={ref} className="ui form" id="filter">
+
       <div 
         onClick={() => setOpen(!open)}
         className={`ui selection dropdown ${open ? 'visible active' : ''}`}>
@@ -35,7 +35,7 @@ const Dropdown = ({ filter, onFilterChange}) => {
           <div className="item" onClick={() => onFilterChange("Pending")}>Pending</div>
         </div>
       </div>
-    </div>
+
   </div>
   )
 
