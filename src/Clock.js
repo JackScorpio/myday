@@ -25,9 +25,10 @@ class Myclock extends React.Component {
   }
 
   render() {
+    let showTime = this.state.date.toLocaleTimeString()
     return (
       <div className="clock">
-        {this.state.date.toLocaleTimeString()}
+        <p>{showTime}</p>
       </div>
     );
   }

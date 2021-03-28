@@ -1,8 +1,8 @@
 .clock {
-
   color: #1e2729;
   font-size: 3rem;
   font-family: Orbitron;
   letter-spacing: 7px;
-  margin: 20px;
+  align-items: center;
+  /* margin: 20px; */
 }
