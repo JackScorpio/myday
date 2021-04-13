@@ -120,3 +120,8 @@ li {
 .addtaskArea {
   margin-right: 2rem;
 }
+
+.widgetsContainer {
+  margin-top: auto;
+  margin-bottom: auto;
+}

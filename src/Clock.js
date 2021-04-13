@@ -1,17 +1,14 @@
-import React from 'react';
-import './Clock.css';
+import React from "react";
+import "./Clock.css";
 
 class Myclock extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {date: new Date()};
+    this.state = { date: new Date() };
   }
 
   componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
+    this.timerID = setInterval(() => this.tick(), 1000);
   }
 
   componentWillUnmount() {
@@ -20,14 +17,14 @@ class Myclock extends React.Component {
 
   tick() {
     this.setState({
-      date: new Date()
+      date: new Date(),
     });
   }
 
   render() {
-    let showTime = this.state.date.toLocaleTimeString()
+    let showTime = this.state.date.toLocaleTimeString();
     return (
-      <div className="clock">
+      <div className='clock'>
         <p>{showTime}</p>
       </div>
     );
