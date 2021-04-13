@@ -1,5 +1,7 @@
-body { 
-  background: url('https://source.unsplash.com/user/pawel_czerwinski') no-repeat center center fixed; 
+body {
+  /* background: url("https://source.unsplash.com/user/martberrios") no-repeat
+    center center fixed; */
+  background: url(./bg.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -12,7 +14,8 @@ body {
 h1 {
   font-size: 22px;
   color: brown;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   /* margin-top: 50px;
   margin-bottom: 50px; */
   /* padding-top: 30px;
@@ -25,7 +28,6 @@ h1 {
   margin: 20px;
 }
 
-
 li {
   list-style-type: none;
 }
@@ -35,12 +37,11 @@ li {
 }
 
 .deleteIcon {
-  position:absolute;
+  position: absolute;
   right: 0;
-
 }
 
-.ui.checkbox  {
+.ui.checkbox {
   font-size: 20px;
 }
 
@@ -90,13 +91,12 @@ li {
 }
 
 #subtaskcheckbox {
-  visibility: hidden
+  visibility: hidden;
 }
 
-.startContainer { 
+.startContainer {
   margin-top: auto;
   margin-bottom: auto;
-
 }
 
 .taskstatusbar {
@@ -108,7 +108,7 @@ li {
 }
 
 .tasks {
-  margin:2rem;
+  margin: 2rem;
 }
 
 .functionArea {
